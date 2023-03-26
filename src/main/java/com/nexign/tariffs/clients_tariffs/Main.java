@@ -200,7 +200,14 @@ public class Main {
 		};
 		
 		
-		new File(args[1]+"/reports").mkdir();
+		try{
+			new File(args[1]+"/reports").mkdir();
+		}catch(ArrayIndexOutOfBoundsException ex){
+            
+           System.out.println("Error:"+ex.getMessage());
+           System.out.println("Please check arguments: 1-path to CDR 2-path to records directory");
+           return;
+       };
 		
 		// Sort lists by start time and write file about client
 		for (Map.Entry<Long, List<Client_Data>> entry : clients.entrySet()) {
